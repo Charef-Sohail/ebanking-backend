@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +27,8 @@ import java.util.stream.Collectors;
 @Transactional
 @AllArgsConstructor
 
-public class BankAccountServiceImpl implements BankAccountService{
+public class
+BankAccountServiceImpl implements BankAccountService{
     private CustomerRepository customerRepository;
     private BankAccountRepository bankAccountRepository;
     private AccountOperationRepository accountOperationRepository;
@@ -202,5 +202,11 @@ public class BankAccountServiceImpl implements BankAccountService{
         accountHistoryDTO.setPageSize(size);
         accountHistoryDTO.setTotalPages(accountOperations.getTotalPages());
         return accountHistoryDTO;
+    }
+
+    @Override
+    public List<CustomerDTO> searchCustomers(String keyword) {
+        List<Customer> customers = customerRepository.findByNameContains(keyword);
+        return customers.stream().map(customer ->dtoMapper.fromCustomer(customer)).collect(Collectors.toList());
     }
 }

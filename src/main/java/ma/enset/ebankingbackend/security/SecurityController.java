@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class SecurityController {
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
     private JwtEncoder jwtEncoder;
 
     @GetMapping("/profile")

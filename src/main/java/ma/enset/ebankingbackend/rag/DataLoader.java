@@ -47,11 +47,12 @@ public class DataLoader {
             List<Document> chunks = textSplitter.apply(documents);
 
             // 3. Ajouter les chunks au Vector Store (C'est ici que l'appel à l'API d'Embedding d'OpenAI se fait)
-            simpleVectorStore.add(chunks);
+            //simpleVectorStore.add(chunks);
 
             // 4. Sauvegarder dans un fichier local pour la prochaine fois
-            simpleVectorStore.save(vectorStoreFile);
+            //simpleVectorStore.save(vectorStoreFile);
 
+            System.out.println("[MODE TEST] Vector Store ignoré pour le moment.");
             System.out.println("Vector Store initialisé avec succès !");
         }
     }
